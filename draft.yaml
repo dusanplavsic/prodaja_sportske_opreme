@@ -1,0 +1,49 @@
+models:
+
+  Kategorije:
+    naziv: string:50
+    opis: text
+
+  Proizvodi:
+    naziv: string 50
+    opis: text
+    cena: int
+    kolicina_na_stanju: int
+    kategorija_id: id foreign:Kategorije
+
+  Kupci:
+    ime: string:50
+    prezime: string:50
+    email: string:50
+    telefon: string:50
+
+  Porudzbine:
+    kupac_id: id foreign:Kupci
+    datum_porudzbine: date
+    status: text
+    ukupan_iznos: int
+
+  Stavke_porudzbine:
+    porudzbina_id: id foreign:Porudzbine
+    proizvod_id: id foreign:Proizvodi
+    kolicina: int
+    cena_po_komadu: int
+
+
+controllers:
+  Kategorije:
+    resource
+
+  Proizvodi:
+    resource
+
+  Kupci:
+    resource
+
+  Porudzbine:
+    resource
+
+  Stavke_porudzbine:
+    resource
+
+  

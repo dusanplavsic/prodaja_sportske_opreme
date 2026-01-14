@@ -1,0 +1,65 @@
+created:
+    - app/Http/Controllers/KategorijeController.php
+    - app/Http/Controllers/ProizvodiController.php
+    - app/Http/Controllers/KupciController.php
+    - app/Http/Controllers/PorudzbineController.php
+    - app/Http/Controllers/Stavke_porudzbineController.php
+    - database/factories/KategorijeFactory.php
+    - database/factories/ProizvodiFactory.php
+    - database/factories/KupciFactory.php
+    - database/factories/PorudzbineFactory.php
+    - database/factories/StavkePorudzbineFactory.php
+    - database/migrations/2026_01_14_163301_create_kategorijes_table.php
+    - database/migrations/2026_01_14_163302_create_proizvodis_table.php
+    - database/migrations/2026_01_14_163303_create_kupcis_table.php
+    - database/migrations/2026_01_14_163304_create_porudzbines_table.php
+    - database/migrations/2026_01_14_163305_create_stavke_porudzbines_table.php
+    - app/Models/Kategorije.php
+    - app/Models/Proizvodi.php
+    - app/Models/Kupci.php
+    - app/Models/Porudzbine.php
+    - app/Models/Stavke_porudzbine.php
+    - tests/Feature/Http/Controllers/KategorijeControllerTest.php
+    - tests/Feature/Http/Controllers/ProizvodiControllerTest.php
+    - tests/Feature/Http/Controllers/KupciControllerTest.php
+    - tests/Feature/Http/Controllers/PorudzbineControllerTest.php
+    - tests/Feature/Http/Controllers/Stavke_porudzbineControllerTest.php
+    - app/Http/Requests/KategorijeStoreRequest.php
+    - app/Http/Requests/KategorijeUpdateRequest.php
+    - app/Http/Requests/ProizvodiStoreRequest.php
+    - app/Http/Requests/ProizvodiUpdateRequest.php
+    - app/Http/Requests/KupciStoreRequest.php
+    - app/Http/Requests/KupciUpdateRequest.php
+    - app/Http/Requests/PorudzbineStoreRequest.php
+    - app/Http/Requests/PorudzbineUpdateRequest.php
+    - app/Http/Requests/Stavke_porudzbineStoreRequest.php
+    - app/Http/Requests/Stavke_porudzbineUpdateRequest.php
+    - resources/views/kategorije/index.blade.php
+    - resources/views/kategorije/create.blade.php
+    - resources/views/kategorije/show.blade.php
+    - resources/views/kategorije/edit.blade.php
+    - resources/views/proizvodi/index.blade.php
+    - resources/views/proizvodi/create.blade.php
+    - resources/views/proizvodi/show.blade.php
+    - resources/views/proizvodi/edit.blade.php
+    - resources/views/kupci/index.blade.php
+    - resources/views/kupci/create.blade.php
+    - resources/views/kupci/show.blade.php
+    - resources/views/kupci/edit.blade.php
+    - resources/views/porudzbine/index.blade.php
+    - resources/views/porudzbine/create.blade.php
+    - resources/views/porudzbine/show.blade.php
+    - resources/views/porudzbine/edit.blade.php
+    - resources/views/stavkePorudzbine/index.blade.php
+    - resources/views/stavkePorudzbine/create.blade.php
+    - resources/views/stavkePorudzbine/show.blade.php
+    - resources/views/stavkePorudzbine/edit.blade.php
+updated:
+    - routes/web.php
+models:
+    User: { name: string, email: string, email_verified_at: 'timestamp nullable default:NULL', password: string, remember_token: 'string:100 nullable default:NULL' }
+    Kategorije: { naziv: 'string:50', opis: text }
+    Proizvodi: { naziv: 'string 50', opis: text, cena: int, kolicina_na_stanju: int, kategorija_id: 'id foreign:Kategorije' }
+    Kupci: { ime: 'string:50', prezime: 'string:50', email: 'string:50', telefon: 'string:50' }
+    Porudzbine: { kupac_id: 'id foreign:Kupci', datum_porudzbine: date, status: text, ukupan_iznos: int }
+    Stavke_porudzbine: { porudzbina_id: 'id foreign:Porudzbine', proizvod_id: 'id foreign:Proizvodi', kolicina: int, cena_po_komadu: int }
