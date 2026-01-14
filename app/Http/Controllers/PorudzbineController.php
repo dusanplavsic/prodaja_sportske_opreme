@@ -11,7 +11,8 @@ use Illuminate\View\View;
 
 class PorudzbineController extends Controller
 {
-    public function index(Request $request): Response
+    // Prikaz svih porudžbina
+    public function index(Request $request): View
     {
         $porudzbines = Porudzbine::all();
 
@@ -20,12 +21,14 @@ class PorudzbineController extends Controller
         ]);
     }
 
-    public function create(Request $request): Response
+    // Forma za kreiranje nove porudžbine
+    public function create(Request $request): View
     {
         return view('porudzbine.create');
     }
 
-    public function store(PorudzbineStoreRequest $request): Response
+    // Čuvanje nove porudžbine
+    public function store(PorudzbineStoreRequest $request): RedirectResponse
     {
         $porudzbine = Porudzbine::create($request->validated());
 
@@ -34,21 +37,24 @@ class PorudzbineController extends Controller
         return redirect()->route('porudzbines.index');
     }
 
-    public function show(Request $request, Porudzbine $porudzbine): Response
+    // Prikaz jedne porudžbine
+    public function show(Request $request, Porudzbine $porudzbine): View
     {
         return view('porudzbine.show', [
             'porudzbine' => $porudzbine,
         ]);
     }
 
-    public function edit(Request $request, Porudzbine $porudzbine): Response
+    // Forma za uređivanje porudžbine
+    public function edit(Request $request, Porudzbine $porudzbine): View
     {
         return view('porudzbine.edit', [
             'porudzbine' => $porudzbine,
         ]);
     }
 
-    public function update(PorudzbineUpdateRequest $request, Porudzbine $porudzbine): Response
+    // Ažuriranje porudžbine
+    public function update(PorudzbineUpdateRequest $request, Porudzbine $porudzbine): RedirectResponse
     {
         $porudzbine->update($request->validated());
 
@@ -57,7 +63,8 @@ class PorudzbineController extends Controller
         return redirect()->route('porudzbines.index');
     }
 
-    public function destroy(Request $request, Porudzbine $porudzbine): Response
+    // Brisanje porudžbine
+    public function destroy(Request $request, Porudzbine $porudzbine): RedirectResponse
     {
         $porudzbine->delete();
 

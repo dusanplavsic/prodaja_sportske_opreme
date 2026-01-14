@@ -5,13 +5,11 @@ namespace App\Http\Controllers;
 use App\Http\Requests\KupciStoreRequest;
 use App\Http\Requests\KupciUpdateRequest;
 use App\Models\Kupci;
-use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
-use Illuminate\View\View;
 
 class KupciController extends Controller
 {
-    public function index(Request $request): Response
+    public function index(Request $request)
     {
         $kupcis = Kupci::all();
 
@@ -20,12 +18,12 @@ class KupciController extends Controller
         ]);
     }
 
-    public function create(Request $request): Response
+    public function create(Request $request)
     {
         return view('kupci.create');
     }
 
-    public function store(KupciStoreRequest $request): Response
+    public function store(KupciStoreRequest $request)
     {
         $kupci = Kupci::create($request->validated());
 
@@ -34,21 +32,21 @@ class KupciController extends Controller
         return redirect()->route('kupcis.index');
     }
 
-    public function show(Request $request, Kupci $kupci): Response
+    public function show(Request $request, Kupci $kupci)
     {
         return view('kupci.show', [
             'kupci' => $kupci,
         ]);
     }
 
-    public function edit(Request $request, Kupci $kupci): Response
+    public function edit(Request $request, Kupci $kupci)
     {
         return view('kupci.edit', [
             'kupci' => $kupci,
         ]);
     }
 
-    public function update(KupciUpdateRequest $request, Kupci $kupci): Response
+    public function update(KupciUpdateRequest $request, Kupci $kupci)
     {
         $kupci->update($request->validated());
 
@@ -57,7 +55,7 @@ class KupciController extends Controller
         return redirect()->route('kupcis.index');
     }
 
-    public function destroy(Request $request, Kupci $kupci): Response
+    public function destroy(Request $request, Kupci $kupci)
     {
         $kupci->delete();
 

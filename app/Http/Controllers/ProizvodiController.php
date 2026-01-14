@@ -5,13 +5,12 @@ namespace App\Http\Controllers;
 use App\Http\Requests\ProizvodiStoreRequest;
 use App\Http\Requests\ProizvodiUpdateRequest;
 use App\Models\Proizvodi;
-use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
-use Illuminate\View\View;
 
 class ProizvodiController extends Controller
 {
-    public function index(Request $request): Response
+    // Prikaz svih proizvoda
+    public function index(Request $request) 
     {
         $proizvodis = Proizvodi::all();
 
@@ -20,12 +19,14 @@ class ProizvodiController extends Controller
         ]);
     }
 
-    public function create(Request $request): Response
+    // Forma za kreiranje novog proizvoda
+    public function create(Request $request) 
     {
         return view('proizvodi.create');
     }
 
-    public function store(ProizvodiStoreRequest $request): Response
+    // Čuvanje novog proizvoda u bazi
+    public function store(ProizvodiStoreRequest $request) 
     {
         $proizvodi = Proizvodi::create($request->validated());
 
@@ -34,21 +35,24 @@ class ProizvodiController extends Controller
         return redirect()->route('proizvodis.index');
     }
 
-    public function show(Request $request, Proizvodi $proizvodi): Response
+    // Prikaz jednog proizvoda
+    public function show(Request $request, Proizvodi $proizvodi) 
     {
         return view('proizvodi.show', [
             'proizvodi' => $proizvodi,
         ]);
     }
 
-    public function edit(Request $request, Proizvodi $proizvodi): Response
+    // Forma za uređivanje proizvoda
+    public function edit(Request $request, Proizvodi $proizvodi) 
     {
         return view('proizvodi.edit', [
             'proizvodi' => $proizvodi,
         ]);
     }
 
-    public function update(ProizvodiUpdateRequest $request, Proizvodi $proizvodi): Response
+    // Ažuriranje proizvoda
+    public function update(ProizvodiUpdateRequest $request, Proizvodi $proizvodi) 
     {
         $proizvodi->update($request->validated());
 
@@ -57,7 +61,8 @@ class ProizvodiController extends Controller
         return redirect()->route('proizvodis.index');
     }
 
-    public function destroy(Request $request, Proizvodi $proizvodi): Response
+    // Brisanje proizvoda
+    public function destroy(Request $request, Proizvodi $proizvodi) 
     {
         $proizvodi->delete();
 

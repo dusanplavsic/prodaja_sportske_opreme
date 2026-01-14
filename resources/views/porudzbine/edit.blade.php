@@ -1,7 +1,7 @@
-{{--
-    @extends('layouts.app')
+
+    @extends('layouts.private')
 
     @section('content')
         porudzbine.edit template
     @endsection
---}}
+
